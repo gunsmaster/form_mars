@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 align="center">Works log</h1>
+{% for job in jobs%}
+<div>
+    <h2>Action # {{job.id}}</h2>
+    {% if job.is_finished == False %}
+    {% set color = '#f56262' %}
+    {% set ready = 'Is not finished' %}
+    {% else %}
+    {%set color = '#9ff562'%}
+    {% set ready = 'Is finished' %}
+    {% endif %}
+
+    <div>
+        <table class="table table-hover">
+            <thead class="table-secondary">
+            <tr>
+                <th>Title of activity</th>
+                <th>Team leader</th>
+                <th>Duration</th>
+                <th>List of collaborators</th>
+                <th>Is finished</th>
+            </tr>
+            </thead>
+            <tr>
+                <td class="table-info">{{job.job}}</td>
+                <td class="table-info">{{job.user.name}}</td>
+                <td class="table-info">{{job.work_size}}</td>
+                <td class="table-info">{{job.collaborators}}</td>
+                <td bgcolor="{{ color }}">{{ ready }}</td>
+            </tr>
+        </table>
+
+
+    </div>
+
+</div>
+{% endfor %}
+{% endblock %}
